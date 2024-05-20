@@ -2,12 +2,37 @@ import { useFormik } from 'formik';
 import { ItemsValidations } from '../../validations/ItemsVal';
 import { TextField } from '@mui/material';
 import Item from '../../classes/ItemClass';
-import { post } from '../../requests/requests';
+import { del, post } from '../../requests/requests';
 import { useContext } from 'react';
 import ItemsContext from '../../context/ItemsCotext';
-
+import React from 'react';
+import { Table } from 'antd';
 const AddItem = () => {
-  const{setItems}= useContext(ItemsContext)
+  const columns = [
+    {
+      title: 'title',
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: 'desc',
+      dataIndex: 'desc',
+      key: 'desc',
+    },
+  
+    {
+      title: 'Action',
+      dataIndex: '_id',
+      key: 'x',
+      render: (record) => <a onClick={()=>{handledel(record)}}>Delete</a>,
+    },
+  ];
+  const handledel=(id)=>{
+    del(id);
+    const filtered = items.filter((x) => x._id !== id);
+    setItems(filtered);
+  }
+  const{items,setItems}= useContext(ItemsContext)
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -23,8 +48,8 @@ const AddItem = () => {
     validationSchema: ItemsValidations
   })
   return (
-    <div>
-      <form action="" onSubmit={formik.handleSubmit}>
+    <div className='container'>
+      <form action="" onSubmit={formik.handleSubmit} style={{display:"flex", flexDirection:"column", gap:"30px"}}>
         <TextField id="outlined-basic" label="ttile" variant="outlined" value={formik.values.title} name='title' onChange={formik.handleChange} />
         {formik.errors.title && <span style={{color:"red"}}>{formik.errors.title}</span>}
         <TextField id="outlined-basic" label="img" variant="outlined" value={formik.values.img} name='img' onChange={formik.handleChange} />
@@ -35,6 +60,22 @@ const AddItem = () => {
         {formik.errors.likeCount && <span style={{color:"red"}}>{formik.errors.likeCount}</span>}
         <button type='submit'> add </button>
       </form>
+      <Table
+    columns={columns}
+    expandable={{
+      expandedRowRender: (record) => (
+        <p
+          style={{
+            margin: 0,
+          }}
+        >
+          {record.desc}
+        </p>
+      ),
+      rowExpandable: (record) => record.title !== 'Not Expandable',
+    }}
+    dataSource={items}
+  />
     </div>
   )
 }

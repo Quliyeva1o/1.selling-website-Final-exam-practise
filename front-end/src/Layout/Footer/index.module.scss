@@ -1,0 +1,12 @@
+.footer{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    ul{
+        width: 100%;
+        list-style: none;
+        padding: 50px;
+        img{
+            width: 100%;
+        }
+    }
+}
