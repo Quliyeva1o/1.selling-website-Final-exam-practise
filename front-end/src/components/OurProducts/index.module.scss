@@ -1,0 +1,53 @@
+.hero {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: auto auto;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns:  auto;
+  }
+  > div {
+    padding: 20px;
+    border: none;
+    box-shadow: none;
+    img {
+      width: 100%;
+    }
+    h1 {
+      font-size: 18px;
+      text-align: center;
+      padding: 10px;
+    }
+   .btns{
+   
+    button:first-of-type{
+        background-color: #000;
+        border: none;
+        height: 30px;
+        width: 60px;margin: 4px;
+        color:#fff;
+        margin-bottom: 10px;
+    }
+    button:last-of-type{
+        background-color: #fff;
+        border: 1px solid #000;
+        height: 30px;
+        width: 60px;margin: 4px;
+        color:#000;
+        margin-bottom: 10px;
+
+    }
+    a{
+        padding: 5px 9px;
+        background-color: #fff;
+        border: 1px solid #000;
+        height: 30px;
+        width: 60px;margin: 4px;
+        color:#000
+    }
+   }
+  }
+}

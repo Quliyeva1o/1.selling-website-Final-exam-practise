@@ -1,0 +1,26 @@
+.hero {
+  background-image: url("https://preview.colorlib.com/theme/selling/images/hero_2.jpg");
+  height: 80vh;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1 {
+    color: #fff;
+    font-size: 5rem;
+    @media(max-width:900px){
+      font-size: 3rem;
+    }
+  }
+  .textContent {
+    width: 600px;
+    @media(max-width:900px){
+      width: 90%;
+    }
+    padding-top: 300px;
+    p {
+      color: #fff;
+    }
+  }
+}
